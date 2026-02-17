@@ -96,14 +96,25 @@ module base() {
     
     // battery lid
     zmove(-FUZZ) xmove(-X_PANEL/2+X_LID/2-FUZZ)
-      color("blue") lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL, r=[0,3,3,0], reverse=true, hull=true);  
+      color("blue")
+        lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL,
+	                             r=[0,0,0,0], reverse=false, mask=true);
   }
 }
 
 // --- final objects   --------------------------------------------------------
 
-xdistribute(10, sizes=[X_LID,X_PANEL]) {
-  color("blue") lid(X_LID,Y_PANEL-2*W_PANEL-GAP, w=W_PANEL, r=[0,3,3,0],
-                    reverse=true, hull=false);  
+// test-print part of base to check lid
+intersection() {
   base();
+    xmove(-X_PANEL/2+X_LID/2)
+      cuboid([X_LID+10,Y_PANEL+10,5], anchor=BOTTOM+CENTER);
 }
+
+// base and lid
+//xdistribute(10, sizes=[X_LID,X_PANEL]) {
+//  xmove(30)
+//     color("blue") lid(X_LID,Y_PANEL-2*W_PANEL-GAP, w=W_PANEL, r=[0,3,3,0],
+//                       reverse=false, mask=false);
+//  base();
+//}
