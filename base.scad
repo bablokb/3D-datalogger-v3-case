@@ -105,16 +105,17 @@ module base() {
 // --- final objects   --------------------------------------------------------
 
 // test-print part of base to check lid
-intersection() {
-  base();
-    xmove(-X_PANEL/2+X_LID/2)
-      cuboid([X_LID+10,Y_PANEL+10,5], anchor=BOTTOM+CENTER);
-}
+//intersection() {
+//  base();
+//    xmove(-X_PANEL/2+X_LID/2)
+//      cuboid([X_LID+10,Y_PANEL+10,5], anchor=BOTTOM+CENTER);
+//}
 
 // base and lid
-//xdistribute(10, sizes=[X_LID,X_PANEL]) {
-//  xmove(30)
-//     color("blue") lid(X_LID,Y_PANEL-2*W_PANEL-GAP, w=W_PANEL, r=[0,3,3,0],
-//                       reverse=false, mask=false);
-//  base();
-//}
+xdistribute(10, sizes=[X_LID,X_PANEL]) {
+  //xmove(30)
+  //xmove(-X_PANEL/2+X_LID/2) zmove(GAP)
+     color("aqua") lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL, r=[0,3,3,0],
+                       reverse=false, mask=false);
+  base();
+}
