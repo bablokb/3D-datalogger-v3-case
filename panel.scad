@@ -81,8 +81,10 @@ module panel() {
     move([112,-57.5,-FUZZ]) cylinder(d=4, h=Z_PANEL_FUZZ,anchor=ANCHOR);
     // Buttons Reset+ON
     move([72,-52.5,-FUZZ]) cuboid([19,12,Z_PANEL_FUZZ], anchor=ANCHOR);
-    // Display-connector
+    // Display-connector SURS
     move([53,-59.5,-FUZZ]) cuboid([14,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
+    // Display-connector THT
+    move([48.30,-56.4,-FUZZ]) cuboid([22.5,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
   }
 }
 
