@@ -72,6 +72,9 @@ module panel() {
     // JST-SH4 (i2c1) + GH6 (SEN66) (xsize+12: UART5V)
     move([92.3,+W_PANEL+FUZZ,-FUZZ])
       cuboid([21,8+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR);
+    // SCD40/OLED
+    move([91.88,-10.85,-FUZZ])
+       cuboid([6.42,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // AHT20
     move([119,-11,-FUZZ])
        cuboid([9.1,10.5,Z_PANEL_FUZZ], anchor=ANCHOR);
