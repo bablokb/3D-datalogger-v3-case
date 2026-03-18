@@ -91,6 +91,6 @@ module panel() {
   }
 }
 
-panel();
-
-//
+// final object, rotated for printing
+xrot(180)
+  panel();
