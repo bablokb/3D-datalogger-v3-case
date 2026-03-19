@@ -73,7 +73,7 @@ module panel() {
     move([92.3,+W_PANEL+FUZZ,-FUZZ])
       cuboid([21,8+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR);
     // SCD40/OLED
-    move([91.88,-10.85,-FUZZ])
+    move([91.88,-10.95,-FUZZ])
        cuboid([6.42,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // AHT20
     move([119,-11,-FUZZ])
@@ -81,13 +81,13 @@ module panel() {
     // Buttons A-C
     move([93,-24,-FUZZ]) cuboid([28,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // LoRa-antenna
-    move([112,-57.5,-FUZZ]) cylinder(d=4, h=Z_PANEL_FUZZ,anchor=ANCHOR);
+    //move([112,-57.5,-FUZZ]) cylinder(d=4, h=Z_PANEL_FUZZ,anchor=ANCHOR);
     // Buttons Reset+ON
     move([72,-52.5,-FUZZ]) cuboid([19,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // Display-connector SURS
     move([53,-59.5,-FUZZ]) cuboid([14,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
     // Display-connector THT
-    move([48.30,-56.4,-FUZZ]) cuboid([22.5,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
+    move([48.30,-54.145,-FUZZ]) cuboid([22.5,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
   }
 }
 
