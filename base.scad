@@ -66,7 +66,7 @@ module pockets(x, y, h, w, offset) {
 
 // --- base composite object   ------------------------------------------------
 
-module base() {
+module base(lid=true) {
   difference() {
     union() {
       // case and all supports
@@ -95,10 +95,12 @@ module base() {
       cuboid([X_PICO_SOCKETS,3*W_PANEL,Z_CASE+2*FUZZ], anchor=BOTTOM+CENTER);
     
     // battery lid
-    zmove(-FUZZ) xmove(-X_PANEL/2+X_LID/2-FUZZ)
-      color("blue")
-        lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL,
-	                             r=[0,0,0,0], reverse=false, mask=true);
+    if (lid) {
+      zmove(-FUZZ) xmove(-X_PANEL/2+X_LID/2-FUZZ)
+        color("blue")
+          lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL,
+	                               r=[0,0,0,0], reverse=false, mask=true);
+    }
   }
 }
 
@@ -112,10 +114,13 @@ module base() {
 //}
 
 // base and lid
+lid = false;
 xdistribute(10, sizes=[X_LID,X_PANEL]) {
-  //xmove(30)
-  //xmove(-X_PANEL/2+X_LID/2) zmove(GAP)
-     color("aqua") lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL, r=[0,3,3,0],
-                       reverse=false, mask=false);
-  base();
+  if (lid) {
+    //xmove(30)
+    //xmove(-X_PANEL/2+X_LID/2) zmove(GAP)
+       color("aqua") lid(X_LID,Y_PANEL-2*W_PANEL, w=W_PANEL, r=[0,3,3,0],
+                         reverse=false, mask=false);
+  }
+  base(lid);
 }
