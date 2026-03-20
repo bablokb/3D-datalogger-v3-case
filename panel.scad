@@ -55,27 +55,28 @@ module panel() {
     // create a slightly larger cover and move it to simplify coordinates 
     move([-W_PANEL,W_PANEL,0])
       cover(X_PANEL, Y_PANEL, W_PANEL);
-    // JST-PH2
+    // JST-PH2 (remove for 300_3, 300_5)
     move([-W_PANEL-FUZZ,-8,-FUZZ])
       cuboid([13+W_PANEL+FUZZ,11,Z_PANEL_FUZZ], anchor=ANCHOR);
-    // pins battery-holder
+    // pins battery-holder (remove for 300_3, 300_5)
     move([22,-5.5,-FUZZ]) cylinder(d=2.5, h=H_PINS+FUZZ,anchor=ANCHOR);
     move([37,-5.5,-FUZZ]) cylinder(d=2.5, h=H_PINS+FUZZ,anchor=ANCHOR);
-    // power-switch
+    // power-switch (remove for 300_3, 300_5)
     move([54,0,-FUZZ]) cuboid([11.5,13,Z_PANEL_FUZZ], anchor=ANCHOR);
     // pins Pico-W
     move([71,0,-FUZZ]) cuboid([3,52,H_PINS+FUZZ], anchor=ANCHOR);
     move([88.7,0,-FUZZ]) cuboid([3,52,H_PINS+FUZZ], anchor=ANCHOR);
-    // JST-SH4 (i2c0)
+    // JST-SH4 (i2c0) (remove vor 300_5)
     move([76,+W_PANEL+FUZZ,-FUZZ])
       cuboid([11,6.5+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR);
-    // JST-SH4 (i2c1) + GH6 (SEN66) (xsize+12: UART5V)
+    // JST-SH4 (i2c1) + GH6 (SEN66) (xsize+12: UART5V)  (remove for 300_5)
     move([92.3,+W_PANEL+FUZZ,-FUZZ])
-      cuboid([21,8+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR);
+      cuboid([21,8+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR); // I2C1+GH6
+      //cuboid([11,8+W_PANEL+FUZZ,Z_PANEL_FUZZ], anchor=ANCHOR);   // only I2C1
     // SCD40/OLED
     move([91.88,-10.95,-FUZZ])
        cuboid([6.42,12,Z_PANEL_FUZZ], anchor=ANCHOR);
-    // AHT20
+    // AHT20  (remove for 300_3, 300_5)
     move([119,-11,-FUZZ])
        cuboid([9.1,10.5,Z_PANEL_FUZZ], anchor=ANCHOR);
     // Buttons A-C
@@ -84,7 +85,9 @@ module panel() {
     move([112,-57.5,-FUZZ]) cylinder(d=4, h=H_PINS+FUZZ,anchor=ANCHOR);
     // Buttons Reset+ON
     move([72,-52.5,-FUZZ]) cuboid([19,12,Z_PANEL_FUZZ], anchor=ANCHOR);
-    // Display-connector SURS
+    // Buttons Reset only (for 300_3, 300_5)
+    //move([72,-52.5,-FUZZ]) cuboid([9.5,12,Z_PANEL_FUZZ], anchor=ANCHOR);
+    // Display-connector SURS (remove for 300_3, 300_5)
     move([53,-59.5,-FUZZ]) cuboid([14,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
     // Display-connector THT
     move([48.30,-54.145,-FUZZ]) cuboid([22.5,4.5,Z_PANEL_FUZZ], anchor=ANCHOR);
