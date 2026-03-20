@@ -81,7 +81,7 @@ module panel() {
     // Buttons A-C
     move([93,-24,-FUZZ]) cuboid([28,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // LoRa-antenna
-    //move([112,-57.5,-FUZZ]) cylinder(d=4, h=Z_PANEL_FUZZ,anchor=ANCHOR);
+    move([112,-57.5,-FUZZ]) cylinder(d=4, h=H_PINS+FUZZ,anchor=ANCHOR);
     // Buttons Reset+ON
     move([72,-52.5,-FUZZ]) cuboid([19,12,Z_PANEL_FUZZ], anchor=ANCHOR);
     // Display-connector SURS
