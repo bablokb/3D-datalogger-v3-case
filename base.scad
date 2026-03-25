@@ -13,7 +13,12 @@ include <fase.scad>
 include <ruthex.scad>
 include <sliding_lid.scad>
 
-Z_CASE = 20;
+// ethernet (EVB-Pico)
+HAVE_ETH = true;
+X_ETH = 22;
+H_ETH = BT + 2;
+
+Z_CASE = HAVE_ETH ? 30:20;
 X_LID  = 50;
 
 // USB-cutout
@@ -32,6 +37,7 @@ Y_VENT_B =  3;
 N_VENT_B =  8;
 D_VENT_S =  3;
 N_VENT_S =  4;
+
 
 // --- basic case   ----------------------------------------------------------
 
@@ -76,8 +82,10 @@ module base(lid=true) {
               h=Z_CASE-Z_PCB+BT, w=W_PANEL,
               offset=R_PANEL);
       // AHT20 wall
-      xmove(X_PCB/2-O_AHT20)
-        cuboid([W2,Y_PANEL,Z_CASE-Z_PCB+BT], anchor=BOTTOM+CENTER);
+      if (!HAVE_ETH) {
+        xmove(X_PCB/2-O_AHT20)
+          cuboid([W2,Y_PANEL,Z_CASE-Z_PCB+BT], anchor=BOTTOM+CENTER);
+      }
     }
     // ventilation bottom
     zmove(-FUZZ) xmove(O_USB)
@@ -93,7 +101,11 @@ module base(lid=true) {
     // cutout for Pico sockets
     move([O_USB,Y_PANEL/2-2*W_PANEL,BT-FUZZ])
       cuboid([X_PICO_SOCKETS,3*W_PANEL,Z_CASE+2*FUZZ], anchor=BOTTOM+CENTER);
-    
+    // ethernet
+    if (HAVE_ETH) {
+      move([O_USB,-Y_PANEL/2,H_ETH])
+        cuboid([X_ETH,6*W_PANEL,Z_CASE], anchor=BOTTOM+CENTER);
+    }
     // battery lid
     if (lid) {
       zmove(-FUZZ) xmove(-X_PANEL/2+X_LID/2-FUZZ)
