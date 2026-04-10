@@ -4,14 +4,14 @@
 // Author: Bernhard Bablok
 // License: GPL3
 //
-// https://github.com/bablokb/pcb-pico-datalogger
+// https://github.com/bablokb/3D-generic-modules
 // ---------------------------------------------------------------------------
 
 include <BOSL2/std.scad>
 include <dimensions.scad>
 include <fase.scad>
 
-RUTHEX_DI_25  = 4;
+RUTHEX_DI_25  = 4+GAP;
 RUTHEX_DO_25  = 7.2;
 RUTHEX_H_25   = 5.7;
 RUTHEX_ADD_25 = 1;
