@@ -9,8 +9,6 @@
 
 include <BOSL2/std.scad>
 include <shared.scad>
-include <fase.scad>
-include <ruthex.scad>
 include <sliding_lid.scad>
 
 // ethernet (EVB-Pico)
@@ -38,49 +36,15 @@ N_VENT_B =  8;
 D_VENT_S =  3;
 N_VENT_S =  4;
 
-
-// --- basic case   ----------------------------------------------------------
-
-module case(x, y, z, b, w, r) {
-  // base plate
-  cuboid([x,y,b], rounding=r, edges="Z", anchor=BOTTOM+CENTER);
-  // sides
-  rect_tube(size=[x,y], wall=w, h=b+z,
-            rounding=r, anchor=BOTTOM+CENTER);
-}
-
-// --- support for PCB   -----------------------------------------------------
-
-module support(x,y,w,h) {
-  move([-x+w-FUZZ,0,h])
-    fase(w,y,w+3,orient="yl");
-  move([+x-w+FUZZ,0,h])
-    fase(w,y,w+3,orient="yr");
-  move([0,-y+w-FUZZ,h])
-    fase(x,w,w+3,orient="xf");
-  move([0,+y-w+FUZZ,h])
-    fase(x,w,w+3,orient="xb");
-}
-
-// --- thread pockets   -------------------------------------------------------
-
-module pockets(x, y, h, w, offset) {
-  xflip_copy() yflip_copy() {
-    move([-x+offset,-y+offset,h]) ruthex25(do_extra=w/2);
-  }
-}
-
 // --- base composite object   ------------------------------------------------
 
 module base(lid=true) {
   difference() {
     union() {
       // case and all supports
-      case(X_PANEL, Y_PANEL, Z_CASE, BT, W_PANEL, R_PANEL);
-      support(X_PANEL/2, Y_PANEL/2, W_PANEL, h=Z_CASE-Z_PCB+BT);
-      pockets(X_PCB/2, Y_PCB/2,
-              h=Z_CASE-Z_PCB+BT, w=W_PANEL,
-              offset=R_PANEL);
+      case_threaded(X_PCB, Y_PCB, z_pcb=Z_PCB,
+                     z_case=Z_CASE, z_base=BT, wall=W_PANEL, rounding=R_PANEL
+                   )
       // AHT20 wall
       if (!HAVE_ETH) {
         xmove(X_PCB/2-O_AHT20)
