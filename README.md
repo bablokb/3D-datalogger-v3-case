@@ -13,7 +13,7 @@ Assembled case with panel:
 ![](complete.jpg)
 
 With additional display, using this [display
-adapter](https://github.com/bablokb/pcb-datalogger-display-adapterv2):
+adapter](https://github.com/bablokb/pcb-datalogger-display-adapter-v2):
 
 ![](complete-with-display.jpg)
 
