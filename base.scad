@@ -10,9 +10,10 @@
 include <BOSL2/std.scad>
 include <shared.scad>
 include <sliding_lid.scad>
+include <threaded_case.scad>
 
 // ethernet (EVB-Pico)
-HAVE_ETH = true;
+HAVE_ETH = false;
 X_ETH = 22;
 H_ETH = BT + 2;
 
@@ -44,7 +45,7 @@ module base(lid=true) {
       // case and all supports
       case_threaded(X_PCB, Y_PCB, z_pcb=Z_PCB,
                      z_case=Z_CASE, z_base=BT, wall=W_PANEL, rounding=R_PANEL
-                   )
+                   );
       // AHT20 wall
       if (!HAVE_ETH) {
         xmove(X_PCB/2-O_AHT20)
@@ -90,7 +91,7 @@ module base(lid=true) {
 //}
 
 // base and lid
-lid = false;
+lid = true;
 xdistribute(10, sizes=[X_LID,X_PANEL]) {
   if (lid) {
     //xmove(30)
